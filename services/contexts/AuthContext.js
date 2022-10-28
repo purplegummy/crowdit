@@ -22,7 +22,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <FirebaseAuthContext.Provider value={{user}}>
+    <FirebaseAuthContext.Provider value={{user, setUser}}>
       {children}
     </FirebaseAuthContext.Provider>
   );
