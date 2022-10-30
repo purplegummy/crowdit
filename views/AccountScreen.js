@@ -31,9 +31,9 @@ export const AccountScreen = ({navigation}) => {
       
         </View>
       </SafeAreaView>
-         <View style={{}}>
+    <View style={{}}>
          <Image 
-         style={{height: 125, width: 125, borderRadius: 75}}
+         style={{height: 125, width: 125, borderRadius: 75, marginTop: -650}}
          source={{uri:`${currUser.avatarUrl}`}}>
 
         </Image>
@@ -48,22 +48,22 @@ export const AccountScreen = ({navigation}) => {
             </View>
          </View>
       
-        <Text>
+        <Text style={styles.infoText}>
             {currUser?.email}
         </Text>
-        <Text>
+        <Text style={styles.infoText}>
             {currUser.firstName}
         </Text>
-        <Text>
+        <Text style={styles.infoText}>
             {currUser?.lastName}
         </Text>
-        <Text>
+        <Text style={styles.infoText}>
             {currUser.socialScore}
         </Text>
-        <Text>
+        <Text style={styles.infoText}>
             {currUser.eventsOrganized}
         </Text>
-        <Text>
+       <Text style={styles.infoText}>
             {currUser.eventsAttended}
         </Text>
    </View>
@@ -99,10 +99,16 @@ const styles = StyleSheet.create({
         fontSize: 40,
         color: "#4A4A4A",
         alignItems: 'top',
+        marginLeft: -170
     
         
       },
       highlight: {
         color: '#1CBC94'
       },
+      infoText: {
+        fontSize: 20,
+    
+
+      }
   });
