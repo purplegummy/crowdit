@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import {Text, View, TextInput, TouchableOpacity } from 'react-native';
 
 import { useLogin } from '../hooks/useLogin';
-export const LoginScreen = () => {
+export const LoginScreen = ( {navigation}) => {
   const {login, loading, error} = useLogin();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const onSubmitListener = () => {
     login(email, password);
+    navigation.navigate('Account');
 
   }
   return (

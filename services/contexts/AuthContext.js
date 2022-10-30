@@ -2,39 +2,55 @@
 import * as React from "react";
 import {auth} from "../Firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../Firebase";
 
 const FirebaseAuthContext = React.createContext();
 
 const AuthProvider = ({ children }) => {
 
   const [user, setUser] = React.useState({
-    uid: null,
-    email: null,
-    displayName: null,
-    photoURL: null,
   });
+ 
+  const retrieveUserInfo = async (user) => {
+    console.log(user);
   
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+
+      
+        setUser(docSnap.data());
+    }
+
+    else {
+      setUser(null);
+    }
+   
+  }
 
   React.useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, setUser);
-    console.log(user);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+
+        retrieveUserInfo(currentUser);
+     
+        
+      
+    });
+    
     return unsubscribe;
   }, []);
 
   return (
-    <FirebaseAuthContext.Provider value={{user, setUser}}>
+    <FirebaseAuthContext.Provider value={{user}}>
       {children}
     </FirebaseAuthContext.Provider>
   );
 };
 function useFirebaseAuth() {
     const context = React.useContext(FirebaseAuthContext);
-    if (context === undefined) {
-      throw new Error(
-        "useFirebaseAuth must be used within a FirebaseAuthProvider"
-      );
-    }
-    return context.user;
+    return context;
   }
 
 export { AuthProvider, useFirebaseAuth };

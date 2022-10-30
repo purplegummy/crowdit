@@ -18,7 +18,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app uses your location to locate nearby events and allows you to set events.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "This app uses your location to locate nearby events and allows you to set events."
+      }
     },
     "android": {
       "adaptiveIcon": {
