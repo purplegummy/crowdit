@@ -1,6 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, SafeAreaView, View, Image, ImageBackground} from 'react-native';
 import { useFonts } from 'expo-font';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [loaded] = useFonts({
@@ -21,17 +25,58 @@ export default function App() {
           />
         </View>
       </SafeAreaView>
-      <SafeAreaView >
-        <ImageBackground source={require('./assets/homeImgBg.png')} style={{ width: '90%', height: '70%', marginLeft: "auto", borderRadius:15}}>
-          <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Centered text</Text>
+      <View style={{position:"absolute", top:150, left:30}}>
+        <ImageBackground source={require('./assets/homeImgBg.png')} style={{ width: 336, height: 284, marginLeft: "auto", borderRadius:15}}>
+          <View style={{ padding: 20, marginTop:10,justifyContent: 'center', alignItems: 'center' }}>
+            <Text style={{ textAlign:"center",marginRight:20,fontWeight:"bold" , color:"white", fontSize: 24, }}>Make a difference, one crowd at a time.</Text>
+
+            <Text style={{ textAlign:"center",marginRight:20, fontWeight:"bold", marginTop:20, textDecorationLine:"underline" , color:"white", fontSize: 16, }}>Start a Project</Text>
+            <Text style={{ textAlign:"center",marginRight:20, fontWeight:"bold", marginTop:20, textDecorationLine:"underline" , color:"white", fontSize: 16, }}>Explore Projects</Text>
+            <Text style={{ textAlign:"center",marginRight:20, fontWeight:"bold", marginTop:20, textDecorationLine:"underline" , color:"white", fontSize: 16, }}>Donate Now</Text>
           </View>
         </ImageBackground>
-      </SafeAreaView>
-      <SafeAreaView>
+      </View>
+
+        <ImageBackground source={require('./assets/GALLERY.jpg')} style={{position:"absolute", top:450, height:260, left:50, width:300}}>
+          <View style={{ padding: 20, marginTop:10,justifyContent: 'center', alignItems: 'center' }}>
+            <Text style={{ textAlign:"center",marginRight:20,fontWeight:"bold" , color:"white", fontSize: 24,marginTop:70 }}>Community Gallery</Text>
+            <Text style={{ textAlign:"center",marginRight:20,fontWeight:"bold" , color:"#0E9573", fontSize: 16,marginTop:10 }}>View All</Text>
         
-      <Text>Community Gallery</Text>
-      </SafeAreaView>
+          </View>
+        </ImageBackground>
+
+        <NavigationContainer>
+      <Tab.Navigator
+        initialRouteName="Feed"
+        tabBarOptions={{
+          activeTintColor: '#42f44b',
+        }}>
+        <Tab.Screen
+          name="App"
+          component={App}
+          options={{
+            tabBarLabel: 'Home',
+            // tabBarIcon: ({ color, size }) => (
+            //   <MaterialCommunityIcons name="home" color={color} size={size} />
+            // ),
+          }}
+        />
+        <Tab.Screen
+          name="SettingsStack"
+          component={App}
+          options={{
+            tabBarLabel: 'Settings',
+            // tabBarIcon: ({ color, size }) => (
+            //   <MaterialCommunityIcons
+            //     name="settings"
+            //     color={color}
+            //     size={size}
+            //   />
+            // ),
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
     </SafeAreaView>
 
   );
@@ -40,8 +85,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
- 
+    backgroundColor:"#F2F2F2",
   },
   mainText: {
     fontFamily: "Poppins",
