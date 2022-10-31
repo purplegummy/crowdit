@@ -39,8 +39,9 @@ export const HomeScreen = ({navigation}) => {
                     <Text style={{ textAlign:"center",marginRight:20, fontWeight:"bold", marginTop:20, textDecorationLine:"underline" , color:"white", fontSize: 16, }}>Start a Project</Text>
                 </TouchableOpacity>
                 
-                
+                <TouchableOpacity onPress={() =>navigation.navigate('TrendingStack')}>
                 <Text style={{ textAlign:"center",marginRight:20, fontWeight:"bold", marginTop:20, textDecorationLine:"underline" , color:"white", fontSize: 16, }}>Explore Projects</Text>
+                </TouchableOpacity>
                 <Text style={{ textAlign:"center",marginRight:20, fontWeight:"bold", marginTop:20, textDecorationLine:"underline" , color:"white", fontSize: 16, }}>Donate Now</Text>
             </View>
             </ImageBackground>

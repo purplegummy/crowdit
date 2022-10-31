@@ -21,7 +21,20 @@ export default function Tabs() {
        <Tab.Navigator
        screenOptions={{
         headerShown: false,
-        gestureEnabled: false
+        gestureEnabled: false,
+        animations: {
+            push: {
+                content: {
+                  translationX: {
+                    from: require('react-native').Dimensions.get('window').width,
+                    to: 0,
+                    duration: 300
+                  }
+                }
+              }
+             
+           
+          },
       }}
         initialRouteName="Feed"
         tabBarOptions={{

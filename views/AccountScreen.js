@@ -27,15 +27,14 @@ export const AccountScreen = ({navigation}) => {
 
    style={styles.container}>
      
-    <SafeAreaView style={styles.navigation}>
+    <View style={styles.navigation}>
         <Text style={styles.mainText}>Crowd It<Text style={styles.highlight}>.</Text></Text>
-        <View>
-        <TouchableOpacity onPress={() => navigation.navigate('CreatePost')}><Text>Create Post</Text></TouchableOpacity>
-        </View>
-      </SafeAreaView>
-    <View style={{}}>
+      </View>
+    <View style={{
+        marginBottom: 25
+    }}>
          <Image 
-         style={{height: 125, width: 125, borderRadius: 75, marginTop: -650}}
+         style={{height: 125, width: 125, borderRadius: 75, marginBottom: 20}}
          source={{uri:`${currUser.avatarUrl}`}}>
 
         </Image>
@@ -49,25 +48,43 @@ export const AccountScreen = ({navigation}) => {
             </Text>
             </View>
          </View>
-      
+      <View style={styles.infoBox}>
+        <Text style={styles.infoText}>Email:</Text>
         <Text style={styles.infoText}>
-            {currUser?.email}
-        </Text>
-        <Text style={styles.infoText}>
-            {currUser.firstName}
-        </Text>
-        <Text style={styles.infoText}>
-            {currUser?.lastName}
-        </Text>
-        <Text style={styles.infoText}>
+                {currUser?.email}
+            </Text>
+      </View>
+       
+       <View style={styles.infoBox}>
+        <Text style={styles.infoText}>Social Score: </Text>
+       <Text style={{...styles.infoText}}>
             {currUser.socialScore}
         </Text>
+       </View>
+       <View style={styles.infoBox}>
+        <Text style={styles.infoText}>Events Organized: </Text>
         <Text style={styles.infoText}>
-            {currUser.eventsOrganized}
-        </Text>
-       <Text style={styles.infoText}>
+                {currUser.eventsOrganized}
+            </Text>
+       </View>
+        <View style={{...styles.infoBox, marginBottom: 100}}>
+            <Text style={styles.infoText}>Events Attended: </Text>
+        <Text style={styles.infoText}>
             {currUser.eventsAttended}
         </Text>
+        </View>
+    
+        <TouchableOpacity style={{
+            width:"35%",
+            borderRadius:15,
+            height:50,
+            alignItems:"center",
+            justifyContent:"center",
+            marginTop:40,
+            backgroundColor:"#1CBC94",
+        }}>
+            <Text style={{color:"white",fontWeight:"700"}}>Sign Out</Text>
+        </TouchableOpacity>
    </View>
   )
 }
@@ -91,10 +108,9 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
     },
     navigation: {
-        flex: 1,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "top"
+        marginBottom: 30,
+       marginTop: 50,
+       marginLeft: -30,
       },
       mainText: {
         fontFamily: "Poppins",
@@ -109,8 +125,14 @@ const styles = StyleSheet.create({
         color: '#1CBC94'
       },
       infoText: {
-        fontSize: 20,
+        fontSize: 18,
     
 
+      },
+      infoBox: {
+        height: 30,
+        display: 'flex',
+        flexDirection: 'row',
+        marginBottom: 10,
       }
   });
