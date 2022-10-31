@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, Image, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
 
 import { useLogin } from '../hooks/useLogin';
 export const LoginScreen = ( {navigation}) => {
@@ -9,32 +9,78 @@ export const LoginScreen = ( {navigation}) => {
   const [password, setPassword] = useState('');
   const onSubmitListener = () => {
     login(email, password);
-    navigation.navigate('Account');
+    navigation.navigate('Home');
 
   }
   return (
-    <View>
-        <Text>Crowd It.</Text>
-        <View>
-          <TextInput    
-            placeholder="Email..."
-          
+    <SafeAreaView style={styles.container}>
+        <Text style={styles.title}>Crowd It<Text style={{color:"#1CBC94"}}>.</Text></Text>
+        <View style={styles.inputView}>
+          <TextInput  style={styles.TextInput}
+            placeholder="Email"
+
             onChangeText={(email) => setEmail(email)}></TextInput>
-         
+
         </View>
-      <View>
-        <TextInput
-    
-        placeholder="Password..."
+      <View style={styles.inputView}>
+        <TextInput style={styles.TextInput} 
+
+        placeholder="Password"
         secureTextEntry={true}
         onChangeText={(password) => setPassword(password)}
        />
       </View>
       <TouchableOpacity
-      
-      onPress={onSubmitListener}>
-        <Text>Login</Text>
+      style={styles.loginBtn}
+      onPress={onSubmitListener}
+      >
+        <Text style={{color:"white",fontWeight:"700"}}>Login</Text>
       </TouchableOpacity>
-    </View>
-  )
+    </SafeAreaView>
+
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+ title: {
+  fontSize: 54,
+  fontWeight:"700",
+  marginBottom: 100,
+  color: "#4A4A4A",
+
+ },
+  inputView: {
+    backgroundColor: "#F7F7F7",
+    borderRadius: 30,
+    width: "70%",
+    height: 45,
+    marginBottom: 20,
+
+    textAlign:"left"
+  },
+  TextInput: {
+    height: 50,
+    flex: 1,
+    padding: 10,
+    marginLeft: 20,
+    textAlign:"left"
+  },
+  loginBtn:
+ {
+   width:"80%",
+   borderRadius:25,
+   height:50,
+   alignItems:"center",
+   justifyContent:"center",
+   marginTop:40,
+   backgroundColor:"#1CBC94",
+
+ }
+});
+

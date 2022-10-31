@@ -19,16 +19,18 @@ export const AccountScreen = ({navigation}) => {
     )
   }
   // <TouchableOpacity onPress={() => navigation.navigate('Home')}><Text>Home</Text></TouchableOpacity>
-  // <TouchableOpacity onPress={() => navigation.navigate('CreatePost')}><Text>Create Post</Text></TouchableOpacity>
+ 
   console.log(currUser.avatarUrl)
   return (
+    
    <View
 
    style={styles.container}>
+     
     <SafeAreaView style={styles.navigation}>
         <Text style={styles.mainText}>Crowd It<Text style={styles.highlight}>.</Text></Text>
         <View>
-      
+        <TouchableOpacity onPress={() => navigation.navigate('CreatePost')}><Text>Create Post</Text></TouchableOpacity>
         </View>
       </SafeAreaView>
     <View style={{}}>
